@@ -24,6 +24,8 @@ const ProyectProvider = ({ children }) => {
   const { auth } = useAuth();
 
   const addTareaState = (tareaNueva) => {
+    const searchTarea = tareas.filter(tarea => tarea._id == tareaNueva._id).length
+    if(searchTarea) return
     setTareas([...tareas, tareaNueva]);
   };
   
