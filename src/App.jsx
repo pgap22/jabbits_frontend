@@ -30,8 +30,8 @@ const App = () => {
         <ProyectProvider>
           <AnimatePresence>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="*" element={<Navigate to={"/404"} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forget-password" element={<ForgetPassword />} />
