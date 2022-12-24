@@ -7,7 +7,7 @@ const HeaderAuth = () => {
       <Auth>
         <Link
           to={"/projects"}
-          className="p-2 px-3 dark:bg-white dark:text-black dark:border-white dark:hover:bg-black dark:hover:text-white  border-black border-2 rounded-md font-medium  hover:text-white hover:bg-black transition-all"
+          className="p-2 px-3 text-center dark:bg-white dark:text-black dark:border-white dark:hover:bg-black dark:hover:text-white  border-black border-2 rounded-md font-medium  hover:text-white hover:bg-black transition-all"
         >
           Ir a los projectos
         </Link>

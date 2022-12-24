@@ -59,12 +59,7 @@ const Header = () => {
           </div>
 
           <div className="mt-12 flex flex-col gap-5">
-            <Link to={"/login"}>
-              <LoginButton />
-            </Link>
-            <Link to={"/register"} className="flex flex-col w-full">
-              <GetStartedButton text={"Get Started"} />
-            </Link>
+            <HeaderAuth />
           </div>
           <div className="mt-12">
             <Menu
