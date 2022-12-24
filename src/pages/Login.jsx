@@ -10,6 +10,7 @@ import NormalInput from "../componentes/Inputs/NormalInput";
 import FormsButtons from "../componentes/buttons/FormButtons";
 import useAuth from "../hooks/useAuth";
 import ThemeButton from "../componentes/buttons/ThemeButton";
+import SpinnerButton from "../componentes/spinner/SpinnerButton";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,12 +20,15 @@ const Login = () => {
   });
   const [alerta, setAlerta] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const email = useRef();
   const password = useRef();
 
   const { setAuth } = useAuth();
 
   const handlerSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     const { value: emailValue } = email.current;
     const { value: passwordValue } = password.current;
@@ -42,6 +46,7 @@ const Login = () => {
     if (!passwordValue) {
       errors.password = "Contraseña esta vacia";
     }
+
     setErrors(errors);
     if (!errors.email & !errors.password) {
       try {
@@ -52,14 +57,17 @@ const Login = () => {
 
         setAuth(data);
         localStorage.setItem("token", data.token);
-        navigate("/")
+        navigate("/");
       } catch (error) {
         setAlerta("El email o la contraseña estan incorrectos");
         setErrors({
           email: true,
           password: true,
         });
+        setLoading(false)
       }
+    }else{
+      setLoading(false);
     }
   };
 
@@ -77,7 +85,9 @@ const Login = () => {
           </Link>
 
           <div className="flex flex-col gap-5 text-center">
-            <h1 className="font-bold text-2xl md:text-5xl">Bienvenido Otra Vez !</h1>
+            <h1 className="font-bold text-2xl md:text-5xl">
+              Bienvenido Otra Vez !
+            </h1>
             <p className="text-sm md:text-lg text-gray-600 dark:text-gray-300">
               Sigue aumentando la productividad de tus proyectos
             </p>
@@ -121,7 +131,16 @@ const Login = () => {
               ref={password}
             />
 
-            <FormsButtons text={"Iniciar Sesion"} />
+            {loading ? (
+              <button
+                disabled
+                className="dark:border-white flex items-center justify-center border capitalize border-black bg-black p-2 text-white text-lg font-bold rounded-full"
+              >
+                <SpinnerButton />
+              </button>
+            ) : (
+              <FormsButtons text={"Crea tu cuenta"} />
+            )}
           </form>
 
           <div className="flex flex-col items-center gap-5 pb-5">

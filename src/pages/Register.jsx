@@ -8,6 +8,7 @@ import clientAxios from "../config/axiosClient";
 import NormalInput from "../componentes/Inputs/NormalInput";
 import FormsButtons from "../componentes/buttons/FormButtons";
 import ThemeButton from "../componentes/buttons/ThemeButton";
+import SpinnerButton from "../componentes/spinner/SpinnerButton";
 const Register = () => {
   const passwordRef = useRef();
   const nameRef = useRef();
@@ -21,9 +22,12 @@ const Register = () => {
 
   const [enviado, setEnviado] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const [alerta, setAlerta] = useState("");
 
   const formSubmit = async () => {
+    setLoading(true);
     if (alerta) {
       setAlerta("");
     }
@@ -47,7 +51,7 @@ const Register = () => {
     }
 
     setError(errors);
-    if (!password || !name || errors.email) return;
+    if (!password || !name || errors.email) return setLoading(false);
 
     try {
       const { data } = await clientAxios.post(`/usuarios/registrar`, {
@@ -144,8 +148,18 @@ const Register = () => {
                   ref={passwordRef}
                   error={error.password}
                 />
+                
+                {loading 
+                
+                ? (
+                  <button disabled className="dark:border-white flex items-center justify-center border capitalize border-black bg-black p-2 text-white text-lg font-bold rounded-full">
+                    <SpinnerButton />
+                  </button>
+                ) : (
+                  <FormsButtons text={"Crea tu cuenta"} />
+                )}
 
-                <FormsButtons text={"Crea tu cuenta"} />
+
               </form>
 
               <div className="flex flex-col gap-2 items-center pb-2">
