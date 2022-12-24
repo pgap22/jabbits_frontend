@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 50000s ease-in-out 0s;
+}
+
+
+html.dark input:-webkit-autofill{
+    -webkit-text-fill-color: white !important;
+}
+html input:-webkit-autofill{
+    -webkit-text-fill-color: black !important;
+}
+
+html.dark body{
+    background-color: #1d1d1d;
+}
+
+body{
+    background-color:#fafaf9;
+    @apply dark:text-white
+}
+
+.home-task{
+    zoom: 120%;   
+    max-width: 400px;
+}
+@media (min-width: 1024px) {
+    
+    .home-task{
+        zoom: 130%;   
+    }
+}
+.reverse{
+    flex-direction: column;
+}
+
+.input-border{
+    @apply border outline-none valid:border-black focus:border-black;
+}
+
+.input-form{
+    @apply outline-none valid:border-black w-full border-b border-gray-300 py-2 focus:border-black transition-all bg-transparent dark:border-gray-500 dark:focus:border-white dark:valid:border-white;
+}
+
+.password-container:has(input:valid){
+    @apply dark:border-white border-black
+}
+.password-container:has(input:focus){
+    @apply dark:border-white border-black
+}
+
+
+.error-input{
+    @apply border-red-600 dark:border-red-500
+}
+.error-input:valid{
+    @apply border-red-600 dark:border-red-500
+}
+.error-input:focus{
+    @apply border-red-600 dark:border-red-500
+}
+
+.error-input:has(input){
+    @apply border-red-600 dark:border-red-500
+}
+.error-input:has(input:valid){
+    @apply border-red-600 dark:border-red-500
+}
+.error-input:has(input:focus){
+    @apply border-red-600 dark:border-red-500
+}

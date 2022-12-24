@@ -1,0 +1,6 @@
+.show-menu{
+    @apply -translate-y-[200%];
+}
+.hide-menu{
+    @apply -translate-y-[0%];
+}

@@ -1,0 +1,28 @@
+.show-menu-item-component-css-react{
+    @apply opacity-100 translate-y-0;
+  }
+  .isSelected-item-component-css-react{
+    @apply block
+  }
+  .isSelected-element-item-component-css-react{
+    @apply bg-gray-200 dark:bg-[#282828];
+  }
+  
+  .menu-value-item-component-css-react:checked+.menu-item{
+   @apply isSelected-element-item-component-css-react;
+  }
+  .menu-item-item-component-css-react:hover{
+    @apply bg-[#d0d0d0] dark:bg-[#282828];
+  }
+  .menu-value-item-component-css-react:checked+.menu-item .checked-img{
+   @apply isSelected-item-component-css-react;
+  }
+  .checked-img-item-component-css-react{
+    @apply dark:invert;
+  }
+  .menu-value-item-component-css-react{
+    @apply hidden;
+  }
+  .show-menu-item-component-css-react-tablet{
+    @apply md:flex
+  }

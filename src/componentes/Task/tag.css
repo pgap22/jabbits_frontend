@@ -1,0 +1,37 @@
+.gray{
+    @apply  bg-gray-200;
+}
+.gray > p{
+    @apply  text-gray-500;
+}
+
+
+.green{
+    @apply  bg-green-200;
+}
+.green > p{
+    @apply  text-green-600;
+}
+
+
+.blue{
+    @apply  bg-blue-200;
+}
+.blue > p{
+    @apply  text-blue-600;
+}
+
+
+.yellow{
+    @apply  bg-yellow-200;
+}
+.yellow > p{
+    @apply  text-yellow-600;
+}
+
+.red{
+    @apply  bg-red-200;
+}
+.red > p{
+    @apply  text-red-600;
+}
