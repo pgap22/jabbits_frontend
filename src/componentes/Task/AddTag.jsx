@@ -1,4 +1,5 @@
 import "./tag.css";
+import ObjectID from "bson-objectid";
 import { IoMdAdd } from "react-icons/io";
 import { useState } from "react";
 import { useRef } from "react";
@@ -26,6 +27,7 @@ const AddTag = () => {
     setMode(false);
     if (inputRef.current.value) {
       const newTag = {
+        _id: ObjectID(),
         nombre: inputRef.current.value,
         color: "#6b7280",
         mandatory: false,

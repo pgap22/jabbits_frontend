@@ -53,6 +53,7 @@ const EditableTagTask = ({ tag, tareasProps }) => {
     const taskEdited = {
       tags: taskTagEdited,
     };
+
     await tareaAPI(taskEdited, task._id, "edit");
 
     setSpinner(false);
