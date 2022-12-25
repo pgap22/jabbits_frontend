@@ -77,7 +77,7 @@ const EditableTagTask = ({ tag, tareasProps }) => {
                 style={{
                   color: tag.color,
                 }}
-                className={`text-xs font-medium md:text-[13px]`}
+                className={`text-xs break-all max-w-[35ch] font-medium md:text-[13px]`}
               >
                 {tag.nombre}
               </p>

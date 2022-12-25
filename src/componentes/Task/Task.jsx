@@ -75,7 +75,7 @@ const Task = ({ tarea = {}, enabled = true }) => {
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              className="bg-white flex flex-col gap-5 p-6 m-2 rounded-md min-h-[500px] overflow-hidden overflow-y-auto sm:w-[30rem] max-w-[30rem]"
+              className="bg-white flex flex-col gap-5 p-6 m-2 rounded-md min-h-[730px]  overflow-y-auto sm:w-[30rem] max-w-[30rem]"
             >
               <div className="flex justify-between items-center">
                 <p className="text-gray-500">
@@ -109,7 +109,7 @@ const Task = ({ tarea = {}, enabled = true }) => {
                   </p>
 
                   <h3 className="font-medium">Etiquetas: </h3>
-                  <div className="flex gap-2 max-w-xs flex-wrap  ">
+                  <div className="flex gap-2 max-w-xs flex-wrap items-start">
                     {task._id
                       ? task.tags.map((tag) => (
                           <>

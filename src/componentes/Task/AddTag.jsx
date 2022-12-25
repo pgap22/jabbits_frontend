@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import useProject from "../../hooks/useProyect";
+
 const AddTag = () => {
   const [inputLength, setInputLenght] = useState(1);
   const [mode, setMode] = useState(false);
-  
-  const {task, setTask} = useProject();
-  
+
+  const { task, setTask } = useProject();
 
   const inputRef = useRef();
 
@@ -22,22 +22,29 @@ const AddTag = () => {
     setInputLenght(1);
   };
 
-  const handlerBlur = () => {
+  const saveCurrentTag = () => {
     setMode(false);
-    if(inputRef.current.value){
-        const newTag = {
-            nombre:inputRef.current.value,
-            color: "#6b7280",
-            mandatory: false, 
-        }
-        setTask({
-            ...task,
-            tags: [
-                ...task.tags,
-                newTag
-            ]
-        })
+    if (inputRef.current.value) {
+      const newTag = {
+        nombre: inputRef.current.value,
+        color: "#6b7280",
+        mandatory: false,
+      };
+      setTask({
+        ...task,
+        tags: [...task.tags, newTag],
+      });
     }
+  };
+
+  const handlerKeyDown = (e) => {
+    if (e.code == "Enter") {
+      saveCurrentTag();
+    }
+  };
+
+  const handlerBlur = () => {
+    saveCurrentTag();
   };
 
   useEffect(() => {
@@ -54,19 +61,24 @@ const AddTag = () => {
       >
         <div className={`flex items-center gap-2`}>
           {mode ? (
-            <input
-              ref={inputRef}
-              onBlur={handlerBlur}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              onChange={handlerOnChange}
-              style={{
-                width: (inputLength+1) + "ch",
-              }}
-              className={`outline-none text-xs font-medium md:text-[13px] group-hover:bg-gray-100`}
-              type="text"
-            />
+            <form
+            className="flex"
+            >
+              <input
+                ref={inputRef}
+                onBlur={handlerBlur}
+                onKeyDown={handlerKeyDown}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                onChange={handlerOnChange}
+                style={{
+                  width: inputLength + 1 + "ch",
+                }}
+                className={`outline-none text-xs font-medium md:text-[13px] group-hover:bg-gray-100`}
+                type="text"
+              />
+            </form>
           ) : (
             <>
               {" "}
