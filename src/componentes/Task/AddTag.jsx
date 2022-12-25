@@ -62,6 +62,7 @@ const AddTag = () => {
         <div className={`flex items-center gap-2`}>
           {mode ? (
             <form
+            onSubmit={(e)=>{e.preventDefault();}}
             className="flex"
             >
               <input
