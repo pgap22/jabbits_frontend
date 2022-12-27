@@ -40,8 +40,8 @@ const ModalDelete = ({ toggleModal }) => {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
+    setSpinner(true);
     await deleteProject(project._id);
-    setSpinner(false);
     toggleModal();
   };
 
