@@ -23,6 +23,13 @@ const ProyectProvider = ({ children }) => {
 
   const { auth } = useAuth();
 
+  const addProjectState = (proyectoNuevo)=>{
+    const searchProyecto = proyectos.filter(proyecto => proyecto._id == proyectoNuevo._id).length
+    if(searchProyecto) return
+    setProyectos([...proyectos, proyectoNuevo]);
+  }
+
+
   const addTareaState = (tareaNueva) => {
     const searchTarea = tareas.filter(tarea => tarea._id == tareaNueva._id).length
     if(searchTarea) return
@@ -241,6 +248,8 @@ const ProyectProvider = ({ children }) => {
   return (
     <ProyectContext.Provider
       value={{
+        addProjectState,
+
         proyectos,
         submitProyecto,
         getProject,

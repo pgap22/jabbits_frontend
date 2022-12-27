@@ -5,12 +5,13 @@ import Spinner from "../componentes/spinner/Spinner";
 import clientAxios from "../config/axiosClient";
 import Skeleton from "../hoc/Skeleton";
 import useAuth from "../hooks/useAuth";
+import useProject from "../hooks/useProyect";
 import BoxCenter from "../layout/BoxCenter";
 const AcceptProject = () => {
   const { id } = useParams();
-  const [spinner, setSpinner] = useState(true);
   const [msg, setMsg] = useState({ color: "text-green-500", msg: "" });
   const { auth } = useAuth();
+  const {addProjectState} = useProject();
 
   const acceptingProject = async () => {
     try {
@@ -27,6 +28,8 @@ const AcceptProject = () => {
         `/proyectos/aceptar-invitacion/${id}`,
         config
       );
+      
+      addProjectState(data);
 
       setMsg({
         color: "text-green-500",
@@ -36,7 +39,6 @@ const AcceptProject = () => {
     } catch (error) {
       setMsg({ color: "text-red-500", msg: "Invitacion Invalida" });
     }
-    setSpinner(false);
   };
 
   useEffect(() => {
