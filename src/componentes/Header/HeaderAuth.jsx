@@ -13,7 +13,7 @@ const HeaderAuth = () => {
         </Link>
 
         <>
-          <div className="flex gap-2">
+          <div className="flex md:flex-row flex-col gap-2">
             <Link to={"/login"}>
               <div className="p-2  bg-white text-center text-black border-2 border-black rounded-md font-medium">
                 Iniciar Sesion

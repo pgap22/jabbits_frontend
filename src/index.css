@@ -57,21 +57,25 @@ body{
 
 
 .error-input{
-    @apply border-red-600 dark:border-red-500
+    @apply dark:border-red-500 border-red-600 
 }
 .error-input:valid{
-    @apply border-red-600 dark:border-red-500
+    @apply dark:border-red-500 border-red-600 
 }
 .error-input:focus{
-    @apply border-red-600 dark:border-red-500
+    @apply dark:border-red-500 border-red-600 
 }
 
 .error-input:has(input){
-    @apply border-red-600 dark:border-red-500
+    @apply dark:border-red-500 border-red-600 
 }
 .error-input:has(input:valid){
-    @apply border-red-600 dark:border-red-500
+    @apply dark:border-red-500 border-red-600 
 }
 .error-input:has(input:focus){
-    @apply border-red-600 dark:border-red-500
+    @apply dark:border-red-500 border-red-600 
+}
+
+.textarea-border{
+    @apply  border dark:valid:border-white dark:focus:border-white valid:border-black focus:border-black border-gray-500 transition-all outline-none resize-none rounded p-1;
 }

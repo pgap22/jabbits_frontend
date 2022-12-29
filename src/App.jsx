@@ -9,6 +9,8 @@ import ForgetPassword from "./pages/ForgetPassword";
 import NewPassword from "./pages/NewPassword";
 import Projects from "./pages/Projects";
 import ConfirmAccount from "./pages/ConfirmAccount";
+import AcceptProject from "./pages/AceptInvitation";
+import Contact from "./pages/Contact";
 
 import ProtectedRoute from "./layout/ProtectedRoute";
 
@@ -18,7 +20,7 @@ import { AuthProvider } from "./context/AuthProvider";
 import { ProyectProvider } from "./context/ProyectProvider";
 import ProjectBoard from "./pages/ProjectBoard";
 import { AnimatePresence } from "framer-motion";
-import AcceptProject from "./pages/AceptInvitation";
+
 
 const App = () => {
   useEffect(() => {
@@ -32,6 +34,7 @@ const App = () => {
           <Routes>
             <Route path="*" element={<Navigate to={"/404"} />} />
             <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forget-password" element={<ForgetPassword />} />

@@ -15,25 +15,27 @@ const DemoTask = () => {
         <Wrapper>
           <div className="flex flex-col gap-5">
             <Task
+              key={"demo-design"}
               enabled={false}
               tarea={
                 {
                   nombre: 'Diseñar logotipo',
                   tags: [
-                    { nombre: "Alta", color: "#a3a3a3" },
-                    { nombre: "UI/UX", color: "#0ea5e9"},
+                    {_id: crypto.randomUUID(), nombre: "Alta", color: "#a3a3a3" },
+                    {_id: crypto.randomUUID(), nombre: "UI/UX", color: "#0ea5e9"},
                   ]
                 }
               }
             />
             <Task
+              key={"demo-requeriment"}
               enabled={false}
               tarea={
                 {
                   nombre: 'Investigar requerimientos',
                   tags: [
-                    { nombre: "Alta", color: "#a3a3a3" },
-                    { nombre: "Completado", color: "#10b981"},
+                    {_id: crypto.randomUUID(), nombre: "Alta", color: "#a3a3a3" },
+                    {_id: crypto.randomUUID(),  nombre: "Completado", color: "#10b981"},
                   ]
                 }
               }
