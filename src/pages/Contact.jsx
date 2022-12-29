@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { createRef, useState } from "react";
 import Header from "../componentes/Header/Header";
 import Wrapper from "../hoc/Wrapper";
 
@@ -42,6 +42,8 @@ const Hero = () => {
   );
 };
 const Form = () => {
+  const [error, setError] = useState(false);
+
   const { control, handleSubmit, formState } = useForm({
     defaultValues: {
       nombre: "",
@@ -55,20 +57,18 @@ const Form = () => {
       const { data } = await clientAxios.post("/contacto", formData);
       console.log(data);
     } catch (error) {
-      console.log(error.response.data);
+      setError(true);
     }
   };
 
-  const submitError = (data) => {
-    console.log(data);
-  };
+  if(error) return <p className="font-bold text-red-500">Hubo un error</p>
 
   if(formState.isSubmitSuccessful) return <p className="font-bold text-green-500">Mensaje Enviado !</p>
 
   return (
     <form
       id="demo-form"
-      onSubmit={handleSubmit(submitForm, submitError)}
+      onSubmit={handleSubmit(submitForm)}
       noValidate
       className="flex flex-col gap-5 max-w-2xl w-full"
     >
