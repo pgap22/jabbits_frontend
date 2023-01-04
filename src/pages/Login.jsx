@@ -139,7 +139,7 @@ const Login = () => {
                 <SpinnerButton />
               </button>
             ) : (
-              <FormsButtons text={"Crea tu cuenta"} />
+              <FormsButtons text={"Inicia Sesion"} />
             )}
           </form>
 
