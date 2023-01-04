@@ -29,7 +29,7 @@ const AddTag = () => {
       const newTag = {
         _id: ObjectID(),
         nombre: inputRef.current.value,
-        color: "#6b7280",
+        color: "#8F8F8F",
         mandatory: false,
       };
       setTask({
