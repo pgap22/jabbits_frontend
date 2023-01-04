@@ -9,6 +9,7 @@ import cleanError from "../../helper/cleanError";
 import useProject from "../../hooks/useProyect";
 import SpinnerButton from "../spinner/SpinnerButton";
 import Modal from "../../hoc/Modal";
+import { checkPastDate } from "../../helper/checkPastDate";
 
 const AddProyect = () => {
 
@@ -26,7 +27,7 @@ const Button = ({toggleModal}) => {
   return (
     <div
       onClick={toggleModal}
-      className="flex items-center mx-3 cursor-pointer p-3 hover:bg-white hover:text-black text-white hover:border-black  transition-all  select-none justify-between bg-black border border-white rounded-md"
+      className="dark:border-[#686767] flex items-center mx-3 cursor-pointer p-3 hover:bg-white hover:text-black text-white hover:border-black  transition-all  select-none justify-between bg-black border border-white rounded-md"
     >
       <div className="flex items-center justify-center  gap-3">
         <CgAddR size={28} />
@@ -70,7 +71,7 @@ const Form = ({toggleModal }) => {
     const { value: description } = projectDescription.current;
     const { value: date } = projectDate.current;
     const Error = {};
-
+    console.log(date);
     if (!name) {
       Error.name = "El Nombre del proyecto esta vacio";
     }
@@ -78,7 +79,7 @@ const Form = ({toggleModal }) => {
     if (!description) {
       Error.description = "La descripcion esta vacia";
     }
-    if (new Date(date) < Date.now()) {
+    if (checkPastDate(date)) {
       Error.date = "No se permiten fechas pasadas";
     }
     if (!date) {

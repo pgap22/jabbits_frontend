@@ -13,6 +13,7 @@ import cleanError from "../../helper/cleanError";
 import InputDate from "../Inputs/InputDate";
 import { formatDate } from "../../helper/formatDate";
 import useAuth from "../../hooks/useAuth";
+import { checkPastDate } from "../../helper/checkPastDate";
 
 const TaskButton = ({ id = "" }) => {
   return (
@@ -34,10 +35,10 @@ const Button = ({ toggleModal, id }) => {
       className={`"flex items-center cursor-pointer p-3  transition-all  select-none justify-between rounded-md
         ${
           id
-            ? ` bg-yellow-200 text-yellow-800
-             hover:bg-yellow-100 hover:text-yellow-600`
-            : ` bg-blue-200 text-blue-800
-              hover:bg-blue-100 hover:text-blue-600`
+            ? `bg-yellow-200 text-yellow-800
+               hover:bg-yellow-100 hover:text-yellow-600`
+            : ` bg-blue-200 text-blue-800 dark:bg-blue-900 dark:text-blue-400
+                hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-800 dark:hover:text-blue-300 `
         }
       "`}
     >
@@ -103,7 +104,7 @@ const Form = ({ toggleModal, id }) => {
       Error.prioridad = "Debes agregar una prioridad";
     }
 
-    if (new Date(date) < Date.now()) {
+    if (checkPastDate(date)) {
       Error.date = "No se permiten fechas pasadas";
     }
     if (!date) {

@@ -30,7 +30,7 @@ const SelectInput = forwardRef(({ error, valueDefault, func, value }, ref) => {
       >
         <Listbox.Button
           className={`${inputError ? "error-input" : ""} ${
-            selectedOption !== valueDefault ? "border-black" : ""
+            selectedOption !== valueDefault ? "border-black dark:border-white" : "dark:border-gray-500 "
           }  border w-full text-start p-2 flex justify-between items-center rounded-md`}
         >
           {({ open }) => (
@@ -52,12 +52,12 @@ const SelectInput = forwardRef(({ error, valueDefault, func, value }, ref) => {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className={"border mt-2 rounded-md shadow-md"}>
+          <Listbox.Options className={"border mt-2 rounded-md shadow-md dark:border-stone-500"}>
             {options.map((option, i) => (
               <Listbox.Option
-                className={`p-2 hover:bg-gray-100 cursor-pointer ${
-                  i != options.length - 1 ? "border-b" : ""
-                }`}
+                className={`p-2 dark:hover:bg-stone-700 border-b hover:bg-gray-100 dark:border-stone-600 cursor-pointer bg-white dark:bg-stone-900
+                  first:rounded-t-md last:rounded-b-md last:border-none 
+                `}
                 key={option.id}
                 value={option.name}
                 disabled={option.unavailable}

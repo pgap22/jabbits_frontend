@@ -84,7 +84,7 @@ const EditableTagTask = ({ tag, tareasProps }) => {
               </p>
             </Popover.Button>
             {open && !contentLoaded && (
-              <Popover.Panel className="shadow-lg bg-white border p-2 absolute -left-8 -translate-x-1/2 z-50 rounded-md top-full w-[200px] m-1">
+              <Popover.Panel className="shadow-lg dark:bg-stone-800 dark:border-gray-600 bg-white border p-2 absolute -left-8 -translate-x-1/2 z-50 rounded-md top-full w-[200px] m-1">
                 <form
                   onSubmit={handlerSubmit}
                   className="w-full flex-col space-y-5"

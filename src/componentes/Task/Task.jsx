@@ -42,17 +42,17 @@ const Task = ({ tarea = {}, enabled = true }) => {
           </h3>
           <BsThreeDots
             onClick={toggleOptions}
-            className="select-none cursor-pointer hover:text-gray-400 transition-all text-gray-500"
+            className="select-none cursor-pointer hover:text-gray-400 transition-all text-gray-500 dark:text-gray-400"
             size={25}
           />
         </div>
-        <div className="flex gap-2 mt-1 overflow-x-scroll scrollbar-thin pb-5 scrollbar-thumb-rounded-md scrollbar-thumb-gray-200">
+        <div className="flex gap-2 mt-1 overflow-x-scroll scrollbar-thin pb-5 scrollbar-thumb-rounded-md dark:scrollbar-thumb-stone-600 scrollbar-thumb-gray-200">
           {tarea.tags.map((tag) => (
             <TagTask key={tag._id} tag={tag} />
           ))}
         </div>
         <div className="text-start mt-1">
-          <p className="dark:text-white text-gray-500 text-xs md:text-base first-letter:uppercase break-words">
+          <p className="text-gray-500 dark:text-gray-400 text-xs md:text-base first-letter:uppercase break-words">
             {tarea.descripcion}
           </p>
         </div>
@@ -75,10 +75,10 @@ const Task = ({ tarea = {}, enabled = true }) => {
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              className="bg-white flex flex-col gap-5 p-6 m-2 rounded-md min-h-[730px]  overflow-y-auto sm:w-[30rem] max-w-[30rem]"
+              className="bg-white dark:bg-[#2f2f2f] flex flex-col gap-5 p-6 m-2 rounded-md min-h-[730px]  overflow-y-auto sm:w-[30rem] max-w-[30rem]"
             >
               <div className="flex justify-between items-center">
-                <p className="text-gray-500">
+                <p className="text-gray-500 dark:text-gray-400">
                   En la lista{" "}
                   <span className=" underline ">{tarea.prioridad}</span>
                 </p>
@@ -98,13 +98,13 @@ const Task = ({ tarea = {}, enabled = true }) => {
               <div className="flex flex-col gap-4 mt-4">
                 <div className="grid grid-cols-[max-content_1fr] gap-y-4 gap-x-2">
                   <h3 className="font-medium">Estado: </h3>
-                  <p className="text-gray-500">{tarea.prioridad}</p>
+                  <p className="text-gray-500 dark:text-gray-400">{tarea.prioridad}</p>
 
                   <h3 className="font-medium">Creador por: </h3>
-                  <p className="text-gray-500">{tarea.creadorPor.nombre}</p>
+                  <p className="text-gray-500 dark:text-gray-400">{tarea.creadorPor.nombre}</p>
 
                   <h3 className="font-medium">Fecha De Entrega: </h3>
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 dark:text-gray-400">
                     {formatDate(tarea.fechaEntrega)}
                   </p>
 
@@ -126,7 +126,7 @@ const Task = ({ tarea = {}, enabled = true }) => {
 
               <div className="mt-4 space-y-2">
                 <h3 className="font-bold text-xl">Descripcion</h3>
-                <p className="text-gray-500 break-words">{tarea.descripcion}</p>
+                <p className="text-gray-500 dark:text-gray-400 break-words">{tarea.descripcion}</p>
               </div>
 
               <div className="flex flex-col gap-5">

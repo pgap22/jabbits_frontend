@@ -59,7 +59,7 @@ const AddTag = () => {
     <>
       <div
         onClick={handlerClick}
-        className={`rounded-full relative p-1 px-3 border hover:bg-gray-100 group cursor-pointer `}
+        className={`rounded-full relative p-1 px-3 border hover:bg-gray-100 hover:dark:bg-stone-700 group cursor-pointer `}
       >
         <div className={`flex items-center gap-2`}>
           {mode ? (
@@ -81,7 +81,7 @@ const AddTag = () => {
                 style={{
                   width: inputLength + 1 + "ch",
                 }}
-                className={`outline-none text-xs font-medium md:text-[13px] group-hover:bg-gray-100`}
+                className={`outline-none text-xs font-medium md:text-[13px] group-hover:bg-gray-100 group-hover:dark:bg-stone-700 bg-transparent`}
                 type="text"
               />
             </form>

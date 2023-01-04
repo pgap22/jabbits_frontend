@@ -41,7 +41,7 @@ body{
 }
 
 .input-border{
-    @apply border outline-none valid:border-black focus:border-black;
+    @apply border outline-none valid:border-black focus:border-black dark:border-gray-500 dark:focus:border-white dark:valid:border-white;
 }
 
 .input-form{

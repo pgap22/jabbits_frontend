@@ -8,7 +8,7 @@ const TextareaInput = forwardRef(({ input, error }, ref) => {
   return (
     <div>
       <textarea
-        className={` ${inputError ? "error-input" : ""} w-full border valid:border-black focus:border-black transition-all outline-none resize-none rounded p-1`}
+        className={` dark:bg-transparent ${inputError ? "error-input" : ""} w-full border dark:border-gray-500 dark:focus:border-white dark:valid:border-white valid:border-black focus:border-black transition-all outline-none resize-none rounded p-1`}
         required
         {...input}
         ref={ref}

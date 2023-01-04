@@ -4,12 +4,11 @@ import useAuth from "../hooks/useAuth";
 import HeaderHome from "../componentes/Header/HeaderHome";
 import AsideHome from "../componentes/Aside/AsideHome";
 
-import theme from "../helper/theme";
 const ProtectedRoute = () => {
   const { auth, loading } = useAuth();
 
   if (loading) return <p>Cargando...</p>;
-  theme('light');
+
   return (
     <>
       {auth._id ? (
@@ -21,10 +20,14 @@ const ProtectedRoute = () => {
                   height: 100dvh;
                 };
               }
+              html.dark body{
+                background-color: #2F2F2F;
+              }
               body{
                   background-color: #f0f0f0;
               }`}
           </style>
+
           <div className="grid h-[100dvh] md:h-auto md:grid-cols-[max-content_1fr]">
             <div className="hidden md:block h-full">
               <AsideHome />

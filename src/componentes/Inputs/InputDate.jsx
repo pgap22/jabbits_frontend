@@ -10,7 +10,7 @@ const InputDate = forwardRef(({ input, error }, ref) => {
         type="date"
         className={`${
           inputError ? "error-input" : ""
-        } w-full border p-2 rounded input-border`}
+        } dark:bg-transparent w-full border p-2 rounded input-border`}
         required
         ref={ref}
         {...input}

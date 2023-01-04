@@ -38,14 +38,14 @@ const Modal = ({children, title, description,modalWidth = ''}) => {
           >
             <Dialog.Panel
               className={
-                "bg-white rounded-md flex flex-col gap-4 p-6 mx-4 max-h-screen overflow-auto "+modalWidth
+                "bg-white dark:bg-[#2F2F2F] rounded-md flex flex-col gap-4 p-6 mx-4 max-h-screen overflow-auto "+modalWidth
               }
             >
               <Dialog.Title className={"font-bold w-full text-xl md:text-3xl flex justify-between items-start"}>
                 {title}
                 <AiOutlineCloseCircle size={22} onClick={toggleModal} />
               </Dialog.Title>
-              <Dialog.Description className={"text-gray-600 mt-3 text-start"}>
+              <Dialog.Description className={"text-gray-600 dark:text-white mt-3 text-start"}>
                  {description}
               </Dialog.Description>
 

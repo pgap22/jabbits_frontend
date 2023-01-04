@@ -10,25 +10,29 @@ import { Fragment, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import {BsTriangleHalf} from "react-icons/bs";
+import toggleTheme from "../../helper/toggleTheme";
+
+
 const HeaderHome = () => {
   const { menu, toggleMenu } = useProject();
   const { Logout, auth } = useAuth();
-  const [searchBar, setSearch] = useState('');
+  const [searchBar, setSearch] = useState("");
   const { proyectos } = useProject();
   const navigate = useNavigate();
-  
+
   const handlerOnChange = (e) => {
     setSearch(e.target.value.toLowerCase());
   };
- const {id} =  useParams();
+  const { id } = useParams();
 
- useEffect(()=>{
-  setSearch('')
- },[id])
- 
- return (
+  useEffect(() => {
+    setSearch("");
+  }, [id]);
+
+  return (
     <>
-      <div className="bg-white md:flex md:justify-center">
+      <div className="bg-white dark:bg-[#1D1D1D] md:flex md:justify-center">
         <section className="py-5 md:py-10 w-full grid grid-cols-2 px-6 md:max-w-[1600px]">
           <CgMenuLeftAlt
             onClick={toggleMenu}
@@ -36,32 +40,40 @@ const HeaderHome = () => {
             size={34}
           />
 
-          <div className="bg-gray-200 relative gap-2 items-center rounded-md px-2 w-full max-w-md hidden md:flex">
+          <div className="bg-gray-200 dark:bg-[#2D2D2D] relative gap-2 items-center rounded-md px-2 w-full max-w-md hidden md:flex">
             <AiOutlineSearch color="gray" size={30} />
             <input
-              type="text"
+              type="search"
               placeholder="Search"
               onChange={handlerOnChange}
               value={searchBar}
-              className="bg-gray-200  w-full  p-2 outline-none border-none"
+              className="bg-gray-200 dark:bg-[#2D2D2D] w-full p-2 outline-none border-none"
             />
             {searchBar ? (
-              <div className="bg-white w-[90%] flex flex-col absolute rounded-md left-[40px] top-[45px] z-10 border shadow-lg ">
+              <div className="bg-white dark:bg-[#2D2D2D] dark:border-[#535050] w-[90%] flex flex-col absolute rounded-md left-[40px] top-[45px] z-10 border shadow-lg ">
                 {proyectos
-                  .filter(({ nombre }) =>
-                    nombre.toLowerCase().match(searchBar)
-                  )
-                  .map((proyecto) => {
+                  .filter(({ nombre }) => nombre.toLowerCase().match(searchBar))
+                  .map((proyecto, i) => {
                     return (
                       <div
                         key={proyecto._id}
-                        onClick={()=>{
-                          navigate("/projects/"+proyecto._id);
+                        onClick={() => {
+                          navigate("/projects/" + proyecto._id);
                         }}
-
-                        className="p-4 border-b w-full py-2 cursor-pointer hover:bg-gray-100 transition-all"
+                        className={`p-4 w-full py-2 border-b dark:border-[#535050] cursor-pointer dark:hover:bg-[#1C1B1B] hover:bg-gray-100 transition-all
+                          last:border-none last:rounded-b-md first:rounded-t-md
+                        `}
                       >
-                        <p dangerouslySetInnerHTML={{__html: proyecto.nombre.toLowerCase().replaceAll(searchBar, `<span class='font-bold'>${searchBar}</span>`)}}></p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: proyecto.nombre
+                              .toLowerCase()
+                              .replaceAll(
+                                searchBar,
+                                `<span class='font-bold'>${searchBar}</span>`
+                              ),
+                          }}
+                        ></p>
                       </div>
                     );
                   })}
@@ -86,15 +98,25 @@ const HeaderHome = () => {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Popover.Panel className="absolute right-[-10%] bottom-[-60px] z-10 w-[12rem] ">
-                <div className="rounded-md bg-white shadow-md p-2 border">
+              <Popover.Panel className="absolute right-[-10%] top-12 z-10 w-[12rem] ">
+                <div className="rounded-md bg-white dark:bg-[#282828] dark:border-[#535050] shadow-md p-2 border flex flex-col gap-3">
+                  
                   <div
                     onClick={Logout}
-                    className="flex gap-2 p-1 items-center hover:bg-red-100 rounded-md cursor-pointer hover:text-red-700 transition-all"
+                    className="flex gap-2 p-1 items-center dark:hover:bg-[#480A0A] dark:hover:text-[#DD3B3B] hover:bg-red-100 rounded-md cursor-pointer hover:text-red-700 transition-all"
                   >
                     <BiLogOut size={24} />
                     <p className="md:text-lg">Cerrar Sesion</p>
                   </div>
+
+                  <div
+                    onClick={toggleTheme}
+                    className="flex gap-2 p-1 items-center hover:bg-gray-100 dark:hover:bg-stone-700 rounded-md cursor-pointer transition-all"
+                  >
+                    <BsTriangleHalf size={24} />
+                    <p className="md:text-lg">Cambiar Tema</p>
+                  </div>
+
                 </div>
               </Popover.Panel>
             </Transition>

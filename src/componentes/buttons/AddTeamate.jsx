@@ -24,7 +24,11 @@ const Button = ({ toggleModal, id }) => {
   return (
     <div
       onClick={toggleModal}
-      className="flex items-center cursor-pointer p-3  transition-all  select-none justify-between rounded-md bg-green-200 text-green-800   hover:bg-green-100 hover:text-green-600"
+      className="flex items-center cursor-pointer p-3  transition-all  select-none justify-between rounded-md 
+      bg-green-200       text-green-800   
+      hover:bg-green-100 hover:text-green-600
+        dark:bg-green-900 dark:text-green-400
+        dark:hover:bg-green-800 dark:hover:text-green-300"
     >
       <div className="flex items-center   gap-3">
         <MdOutlinePersonAddAlt size={28} />
@@ -34,7 +38,7 @@ const Button = ({ toggleModal, id }) => {
   );
 };
 
-const Form = ({ toggleModal }) => {
+const Form = () => {
   const { buscarTeamate, enviarInvitacion } = useProject();
 
   const [spinner, setSpinner] = useState(false);

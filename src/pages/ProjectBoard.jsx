@@ -76,17 +76,17 @@ const ProjectBoard = () => {
     return (
       <>
         <main className="w-full">
-          <div className="bg-white w-full p-6 md:p-8 border-t flex justify-center">
+          <div className="bg-white dark:bg-[#1D1D1D] dark:border-[#535050] w-full p-6 md:p-8 border-t flex justify-center">
             <div className="max-w-[1600px] w-full flex items-center justify-between animate-pulse">
-              <div className="w-1/2 bg-gray-300 h-6 rounded-full"></div>
-              <div className=" bg-gray-300 h-12 aspect-square rounded-md"></div>
+              <div className="w-1/2 bg-gray-300 dark:bg-stone-600 h-6 rounded-full"></div>
+              <div className=" bg-gray-300 dark:bg-stone-600 h-12 aspect-square rounded-md"></div>
             </div>
           </div>
-          <div className="w-full p-6 md:p-8 border-t flex justify-center">
+          <div className="w-full p-6 md:p-8 border-t dark:border-[#535050] flex justify-center">
             <div className="max-w-[1600px] w-full flex flex-col gap-12 justify-between animate-pulse">
-              <div className="w-2/3 bg-gray-300 h-6 rounded-full"></div>
-              <div className="w-4/1 bg-gray-300 h-6 rounded-full"></div>
-              <div className="w-1/2 bg-gray-300 h-6 rounded-full"></div>
+              <div className="w-2/3 bg-gray-300 dark:bg-stone-600 h-6 rounded-full"></div>
+              <div className="w-4/1 bg-gray-300 dark:bg-stone-600 h-6 rounded-full"></div>
+              <div className="w-1/2 bg-gray-300 dark:bg-stone-600 h-6 rounded-full"></div>
             </div>
           </div>
         </main>
@@ -99,7 +99,7 @@ const ProjectBoard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="bg-white w-full h-full items-start border-t grid grid-rows-[max-content_1fr]"
+      className="bg-white dark:bg-[#1D1D1D] dark:border-[#535050] w-full h-full items-start border-t grid grid-rows-[max-content_1fr]"
     >
       <div className="gap-5 p-6 md:p-8 w-full max-w-[1600px] justify-self-center">
         <div className="w-full flex justify-between">
@@ -124,7 +124,7 @@ const ProjectBoard = () => {
             <div
               className="flex flex-col gap-2"
             >
-              <PriorityHeader text={"Baja"} color={"bg-green-300"} />
+              <PriorityHeader text={"Baja"} color={"bg-green-300 dark:bg-green-700"} />
 
               <AnimatePresence>
                 {tareas
@@ -141,7 +141,7 @@ const ProjectBoard = () => {
             <div
               className="flex flex-col gap-2"
             >
-              <PriorityHeader key={'medium-heading'} text={"Media"} color={"bg-blue-300"} />
+              <PriorityHeader key={'medium-heading'} text={"Media"} color={"bg-blue-300 dark:bg-blue-700"} />
 
               <AnimatePresence>
                 {tareas
@@ -159,7 +159,7 @@ const ProjectBoard = () => {
             <div
               className="flex flex-col gap-2"
             >
-              <PriorityHeader key={'high-heading'} text={"Alta"} color={"bg-orange-300"} />
+              <PriorityHeader key={'high-heading'} text={"Alta"} color={"bg-orange-300 dark:bg-orange-700"} />
 
               <AnimatePresence>
                 {tareas
