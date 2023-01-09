@@ -13,36 +13,43 @@ const ProyectContext = createContext();
 
 const ProyectProvider = ({ children }) => {
   const [proyectos, setProyectos] = useState([]);
-  const [project, setProject] = useState();
+  const [project, setProject] = useState({});
   const [projectLoading, setLoading] = useState(false);
   const [menu, toggleMenu] = useCycle(false, true);
   const [tareas, setTareas] = useState([]);
-  const [task, setTask]  = useState({});
+  const [task, setTask] = useState({});
+  const [originalTask, setOriginalTask] = useState({});
 
   const [zIndex, toggleZIndex] = useState(false);
 
   const { auth } = useAuth();
 
-  const addProjectState = (proyectoNuevo)=>{
-    const searchProyecto = proyectos.filter(proyecto => proyecto._id == proyectoNuevo._id).length
-    if(searchProyecto) return
+  const addProjectState = (proyectoNuevo) => {
+    const searchProyecto = proyectos.filter(
+      (proyecto) => proyecto._id == proyectoNuevo._id
+    ).length;
+    if (searchProyecto) return;
     setProyectos([...proyectos, proyectoNuevo]);
-  }
-
+  };
 
   const addTareaState = (tareaNueva) => {
-    const searchTarea = tareas.filter(tarea => tarea._id == tareaNueva._id).length
-    if(searchTarea) return
+    const searchTarea = tareas.filter(
+      (tarea) => tarea._id == tareaNueva._id
+    ).length;
+    if (searchTarea) return;
     setTareas([...tareas, tareaNueva]);
   };
-  
-  const editTareaState = (tarea,id) => {
-    const tareasEdited = tareas.map((task) =>
-    task._id != id ? task : tarea
-  );
-  setTask(tarea);
-  setTareas(tareasEdited);
-  }
+
+  const editTareaState = (tarea, id) => {
+    const tareasEdited = tareas.map((task) => (task._id != id ? task : tarea));
+
+    if(task._id){
+      setTask(tarea);
+      setOriginalTask(tarea);
+    }
+
+    setTareas(tareasEdited);
+  };
   const deleteTareaState = (id) => {
     const tareasEdited = tareas.filter((task) => task._id != id);
     setTareas(tareasEdited);
@@ -165,13 +172,12 @@ const ProyectProvider = ({ children }) => {
           config
         );
 
-        editTareaState(data,id);
+        editTareaState(data, id);
         const tareaSocket = {
           tarea: data,
-          proyecto_id: project._id
-        }
-        socket.emit("editar-tarea", tareaSocket)
-
+          proyecto_id: project._id,
+        };
+        socket.emit("editar-tarea", tareaSocket);
       }
 
       if (accion == "delete") {
@@ -237,6 +243,11 @@ const ProyectProvider = ({ children }) => {
     return data;
   };
 
+  const showInfoTask = (infoTask) => {
+    setTask(infoTask);
+    setOriginalTask(infoTask);
+  };
+
   useEffect(() => {
     if (auth._id) {
       getProyectos();
@@ -266,8 +277,10 @@ const ProyectProvider = ({ children }) => {
 
         setTask,
         task,
+        originalTask,
 
         tareas,
+        showInfoTask,
         tareaAPI,
         addTareaState,
         deleteTareaState,

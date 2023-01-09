@@ -118,7 +118,7 @@ const WhyUseJabbits = forwardRef((props, learnMore) => {
 const Footer = () => {
   return (
     <footer className="w-full text-center p-4 dark:border-t dark:border-white bg-black text-white">
-      <p className="font-bold text-xl ">Jabbits 2022 &copy;</p>
+      <p className="font-bold text-xl ">Jabbits {new Date().getFullYear()} &copy;</p>
     </footer>
   );
 };

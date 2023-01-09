@@ -7,16 +7,17 @@ import NormalInput from "../Inputs/NormalInput";
 import SpinnerButton from "../spinner/SpinnerButton";
 import "./tag.css";
 import TagTask from "./TagTask";
-const EditableTagTask = ({ tag, tareasProps }) => {
+const EditableTagTask = ({ tag }) => {
   if (tag.mandatory) return <TagTask tag={tag} />;
 
+  const { originalTask } = useProject();
   const [colorTag, setColor] = useState("#6b7280");
   const [spinner, setSpinner] = useState(false);
   const [contentLoaded, setContent] = useState(false);
 
   const nombreRef = useRef();
 
-  const { task, setTask, tareaAPI } = useProject();
+  const { task, tareaAPI } = useProject();
 
   const changeColorTag = (e) => {
     setColor(e.target.value);
@@ -26,30 +27,18 @@ const EditableTagTask = ({ tag, tareasProps }) => {
     setSpinner(true);
     e.preventDefault();
 
+    let taskTagEdited = {};
+
     const tagEdited = {
       nombre: nombreRef.current.value,
       color: colorTag,
     };
-
+    
     if (!nombreRef.current.value) {
-      const taskTagEdited = task.tags.filter(
-        (taskTag) => taskTag._id !== tag._id
-      );
-      const taskEdited = {
-        tags: taskTagEdited,
-      };
-
-      await tareaAPI(taskEdited, task._id, "edit");
-
-      setSpinner(false);
-      setContent(true);
-
-      return;
+      taskTagEdited = task.tags.filter((taskTag) => taskTag._id !== tag._id);
+    } else {
+      taskTagEdited = task.tags.map((taskTag) =>  taskTag._id == tag._id ? tagEdited : taskTag);
     }
-
-    const taskTagEdited = task.tags.map((taskTag) =>
-      taskTag._id == tag._id ? tagEdited : taskTag
-    );
     const taskEdited = {
       tags: taskTagEdited,
     };
@@ -58,10 +47,7 @@ const EditableTagTask = ({ tag, tareasProps }) => {
 
     setSpinner(false);
     setContent(true);
-
-    console.log(tagEdited);
   };
-
 
   return (
     <Popover className={"relative"}>
@@ -121,8 +107,10 @@ const EditableTagTask = ({ tag, tareasProps }) => {
                       >
                         <SpinnerButton />
                       </div>
+                    ) : !equalsArray(task.tags, originalTask.tags) ? (
+                      "Guardar Etiquetas"
                     ) : (
-                      !equalsArray(task.tags, tareasProps.tags) ? "Guardar Etiquetas" : "Actualizar"
+                      "Actualizar"
                     )}
                   </button>
                 </form>
