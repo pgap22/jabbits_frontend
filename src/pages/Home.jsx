@@ -39,8 +39,8 @@ const Features = () => {
               descripcion:
                 "Crear un custom hook que obtenga los valores de la API",
               tags: [
-                {_id: crypto.randomUUID(), nombre: "Alta", color: "#a3a3a3" },
-                {_id: crypto.randomUUID(), nombre: "Pendiente", color: "#eab308" },
+                {_id: Math.random(), nombre: "Alta", color: "#a3a3a3" },
+                {_id: Math.random(), nombre: "Pendiente", color: "#eab308" },
               ],
             }}
           />

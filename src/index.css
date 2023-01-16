@@ -77,5 +77,5 @@ body{
 }
 
 .textarea-border{
-    @apply  border dark:valid:border-white dark:focus:border-white valid:border-black focus:border-black border-gray-500 transition-all outline-none resize-none rounded p-1;
+    @apply  border dark:valid:border-white dark:focus:border-white valid:border-black focus:border-black transition-all outline-none resize-none rounded p-1;
 }

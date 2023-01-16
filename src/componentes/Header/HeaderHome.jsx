@@ -103,7 +103,7 @@ const HeaderHome = () => {
                   
                   <div
                     onClick={Logout}
-                    className="flex gap-2 p-1 items-center dark:hover:bg-[#480A0A] dark:hover:text-[#DD3B3B] hover:bg-red-100 rounded-md cursor-pointer hover:text-red-700 transition-all"
+                    className="flex gap-2 p-1 items-center rounded-md cursor-pointer transition-all"
                   >
                     <BiLogOut size={24} />
                     <p className="md:text-lg">Cerrar Sesion</p>
@@ -111,7 +111,7 @@ const HeaderHome = () => {
 
                   <div
                     onClick={toggleTheme}
-                    className="flex gap-2 p-1 items-center hover:bg-gray-100 dark:hover:bg-stone-700 rounded-md cursor-pointer transition-all"
+                    className="flex gap-2 p-1 items-center rounded-md cursor-pointer transition-all"
                   >
                     <BsTriangleHalf size={24} />
                     <p className="md:text-lg">Cambiar Tema</p>

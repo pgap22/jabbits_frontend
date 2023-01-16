@@ -3,7 +3,7 @@ const FormTextarea = ({input, fieldState}) => {
   return (
     <div>
       <textarea
-        className={` ${fieldState.error && "error-input"} w-full dark:bg-transparent textarea-border`}
+        className={`${fieldState.error ? "error-input" : ''} w-full dark:bg-transparent textarea-border`}
         required
         {...input}
       ></textarea>

@@ -21,8 +21,8 @@ const DemoTask = () => {
                 {
                   nombre: 'Diseñar logotipo',
                   tags: [
-                    {_id: crypto.randomUUID(), nombre: "Alta", color: "#a3a3a3" },
-                    {_id: crypto.randomUUID(), nombre: "UI/UX", color: "#0ea5e9"},
+                    {_id: Math.random(), nombre: "Alta", color: "#a3a3a3" },
+                    {_id: Math.random(), nombre: "UI/UX", color: "#0ea5e9"},
                   ]
                 }
               }
@@ -34,8 +34,8 @@ const DemoTask = () => {
                 {
                   nombre: 'Investigar requerimientos',
                   tags: [
-                    {_id: crypto.randomUUID(), nombre: "Alta", color: "#a3a3a3" },
-                    {_id: crypto.randomUUID(),  nombre: "Completado", color: "#10b981"},
+                    {_id: Math.random(), nombre: "Alta", color: "#a3a3a3" },
+                    {_id: Math.random(),  nombre: "Completado", color: "#10b981"},
                   ]
                 }
               }

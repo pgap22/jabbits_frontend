@@ -67,7 +67,6 @@ const Form = () => {
 
   return (
     <form
-      id="demo-form"
       onSubmit={handleSubmit(submitForm)}
       noValidate
       className="flex flex-col gap-5 max-w-2xl w-full"
@@ -173,7 +172,7 @@ const Form = () => {
         />
       </div>
 
-      <button disabled={formState.isSubmitSuccessful} className="dark:bg-stone-900 flex justify-center p-2 rounded-full dark:border-white border w-[120px] bg-white border-black transition-all  dark:enabled:hover:bg-white dark:enabled:hover:text-black enabled:hover:bg-black enabled:hover:text-white">
+      <button disabled={formState.isSubmitting} className="dark:bg-stone-900 flex justify-center p-2 rounded-full dark:border-white border w-[120px] bg-white border-black transition-all  dark:enabled:hover:bg-white dark:enabled:hover:text-black enabled:hover:bg-black enabled:hover:text-white">
         <Skeleton
         value={!formState.isSubmitting}
         skeleton={<div className="invert dark:invert-0"><SpinnerButton /></div>}

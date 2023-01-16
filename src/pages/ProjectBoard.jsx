@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
@@ -8,12 +7,13 @@ import ConfigProject from "../componentes/buttons/ConfigProject";
 import TaskButton from "../componentes/buttons/TaskButton";
 import PriorityHeader from "../componentes/Task/PriorityHeader";
 import Task from "../componentes/Task/Task";
-import TaskContainer from "../hoc/TaskContainer";
 import useAuth from "../hooks/useAuth";
 import useProject from "../hooks/useProyect";
 
 import Skeleton from "../hoc/Skeleton";
 import TaskDetails from "../componentes/Task/TaskDetails";
+import DashboardPage from "../layout/DashboardPage";
+import clsx from "clsx";
 
 let socket;
 
@@ -22,14 +22,13 @@ const ProjectBoard = () => {
 
   const {
     project,
+    setProject,
     tareas,
     getProject,
     addTareaState,
     editTareaState,
     deleteTareaState,
   } = useProject();
-
-  const { auth } = useAuth();
 
   useEffect(() => {
     getProject(id);
@@ -67,36 +66,29 @@ const ProjectBoard = () => {
     };
   }, [tareas]);
 
-  return (
-    <Skeleton
-    value={project._id}
-    skeleton={<SkeletonProject />}
-    >
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-        className="bg-white dark:bg-[#1D1D1D] dark:border-[#535050] w-full h-full items-start border-t grid grid-rows-[max-content_1fr]"
-      >
-        <div className="gap-5 p-6 md:p-8 w-full max-w-[1600px] justify-self-center">
-          <div className="w-full flex justify-between">
-            <div className="flex flex-col gap-3">
-              <h1 className=" text-2xl md:text-3xl font-bold">
-                {project.nombre}
-              </h1>
-              <p>{project.descripcion}</p>
-              <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
-                <TaskButton />
-                {auth._id == project.creador ? <AddTeamate /> : ""}
-              </div>
-            </div>
-            {auth._id == project.creador ? <ConfigProject /> : ""}
-          </div>
-        </div>
+  useEffect(() => {
+    return () => {
+      //Fix project Skeleton on change project page
+      setProject({});
+    };
+  }, []);
 
-        <TaskContainer>
-          
+  return (
+    <Skeleton value={project._id} skeleton={<SkeletonProject />}>
+      <DashboardPage heading={<Heading />}>
+        <div
+          className={clsx(
+            "grid",
+            "h-full",
+            "grid-cols-[repeat(3,320px)]",
+            "py-4",
+            "gap-12",
+            "overflow-auto",
+            "scrollbar-thumb-black",
+            "scrollbar-thin",
+            "scrollbar-thumb-rounded-full"
+          )}
+        >
           {tareas.filter((tarea) => tarea.prioridad == "Baja").length ? (
             <div className="flex flex-col gap-2">
               <PriorityHeader
@@ -148,18 +140,33 @@ const ProjectBoard = () => {
                   ))}
               </AnimatePresence>
             </div>
-          ) : null}   
+          ) : null}
 
           <TaskDetails />
-
-          
-        </TaskContainer>
-
-      </motion.main>
+        </div>
+      </DashboardPage>
     </Skeleton>
   );
 };
 
+const Heading = () => {
+  const { auth } = useAuth();
+  const { project } = useProject();
+
+  return (
+    <div className="w-full flex justify-between">
+      <div className="flex flex-col gap-3">
+        <h1 className=" text-2xl md:text-3xl font-bold">{project.nombre}</h1>
+        <p>{project.descripcion}</p>
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
+          <TaskButton />
+          {auth._id == project.creador ? <AddTeamate /> : ""}
+        </div>
+      </div>
+      {auth._id == project.creador ? <ConfigProject /> : ""}
+    </div>
+  );
+};
 const SkeletonProject = () => {
   return (
     <>

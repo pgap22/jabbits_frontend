@@ -20,7 +20,8 @@ import { AuthProvider } from "./context/AuthProvider";
 import { ProyectProvider } from "./context/ProyectProvider";
 import ProjectBoard from "./pages/ProjectBoard";
 import { AnimatePresence } from "framer-motion";
-
+import MyTask from "./pages/MyTask";
+import { TaskProvider } from "./context/TaskProvider";
 
 const App = () => {
   useEffect(() => {
@@ -30,25 +31,35 @@ const App = () => {
     <>
       <AuthProvider>
         <ProyectProvider>
-          <AnimatePresence>
-          <Routes>
-            <Route path="*" element={<Navigate to={"/404"} />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forget-password" element={<ForgetPassword />} />
-            <Route path="/forget-password/:token" element={<NewPassword />} />
-            <Route path="/confirm/:id" element={<ConfirmAccount />} />
-            <Route path="/accept-proyect/:id" element={<AcceptProject />} />
-            <Route path="/404" element={<ErrorPage />} />
+          <TaskProvider>
+            <AnimatePresence>
+              <Routes>
+                <Route path="*" element={<Navigate to={"/404"} />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forget-password" element={<ForgetPassword />} />
+                <Route
+                  path="/forget-password/:token"
+                  element={<NewPassword />}
+                />
+                <Route path="/confirm/:id" element={<ConfirmAccount />} />
+                <Route path="/accept-proyect/:id" element={<AcceptProject />} />
+                <Route path="/404" element={<ErrorPage />} />
 
-            <Route path="/projects" element={<ProtectedRoute />}>
-              <Route index element={<Projects />} />
-              <Route path=":id" element={<ProjectBoard />} />
-            </Route>
-          </Routes>
-          </AnimatePresence>
+                <Route path="/projects" element={<ProtectedRoute />}>
+                  <Route index element={<Projects />} />
+                  <Route path=":id" element={<ProjectBoard />} />
+                  {/* <Route path=":id/teamates" element={<h1>Hola Colaboradores</h1>}></Route> */}
+                </Route>
+
+                {/* <Route path="/mytasks" element={<ProtectedRoute />}>
+                  <Route index element={<MyTask />} />
+                </Route> */}
+              </Routes>
+            </AnimatePresence>
+          </TaskProvider>
         </ProyectProvider>
       </AuthProvider>
     </>

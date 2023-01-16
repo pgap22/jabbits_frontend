@@ -13,7 +13,7 @@ const FormSelect = ({ input, fieldState, options = [] }) => {
           >
             {({ open }) => (
               <div className="flex items-center justify-between">
-                <span className={!input.value ? "text-gray-400" : ""}>
+                <span className={!input.value ? "text-gray-400 capitalize" : "capitalize"}>
                   {input.value || input.placeholder}
                 </span>
                 <FiChevronDown

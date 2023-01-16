@@ -262,6 +262,7 @@ const ProyectProvider = ({ children }) => {
         addProjectState,
 
         proyectos,
+        setProject,
         submitProyecto,
         getProject,
         getProyectos,

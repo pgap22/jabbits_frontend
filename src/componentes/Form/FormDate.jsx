@@ -1,23 +1,17 @@
-import { forwardRef } from "react";
-import useInputError from "../../hooks/useInputError";
-
-const FormDate = forwardRef(({ input, error }, ref) => {
-  const inputError = useInputError(error);
-
+const FormDate = ({ input, fieldState }) => {
   return (
     <div>
       <input
         type="date"
         className={`${
-          inputError ? "error-input" : ""
+          fieldState.error ? "error-input" : ""
         } w-full border p-2 rounded input-border`}
         required
-        ref={ref}
         {...input}
-      />  
-      <span className="text-red-500">{inputError ? inputError: ''}</span>
+      />
+      <span className="text-red-500">{fieldState.error && fieldState.error.message}</span>
     </div>
   );
-});
+};
 
 export default FormDate;
