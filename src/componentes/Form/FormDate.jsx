@@ -5,7 +5,7 @@ const FormDate = ({ input, fieldState }) => {
         type="date"
         className={`${
           fieldState.error ? "error-input" : ""
-        } w-full border p-2 rounded input-border`}
+        } w-full border p-2 rounded input-border dark:bg-transparent`}
         required
         {...input}
       />

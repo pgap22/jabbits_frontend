@@ -37,6 +37,8 @@ const useModalTask = () => {
             "left-0",
             "right-0",
 
+            "dark:bg-[#333333]",
+
             "md:bottom-auto",
             "md:left-1/2",
             "md:top-1/2",

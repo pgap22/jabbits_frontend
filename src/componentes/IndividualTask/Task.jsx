@@ -1,8 +1,10 @@
 import clsx from "clsx";
+import { formatDate } from "../../helper/formatDate";
+import { traditionalDate } from "../../helper/traditionalDate";
 import useTasks from "../../hooks/useTasks";
 
 const Task = ({task}) => {
-  const { nombre: title, descripcion: description, status } = task;
+  const { nombre: title, descripcion: description, status,fecha } = task;
   const {showTaskModal,setMainTask } = useTasks();
   return (
     <div
@@ -22,12 +24,15 @@ const Task = ({task}) => {
         "cursor-pointer",
         "hover:scale-[1.01]",
         "transition-all",
+        "dark:bg-[#252525]"
       )}
     >
-      <div>
+      <div className="space-y-2">
         <h1 className="text-2xl font-bold break-words">{title}</h1>
 
-        <p className="text-gray-600 break-words">{description}</p>
+        <p className="text-gray-600 break-words dark:text-gray-300">{description}</p>
+
+        <p className="font-bold">{traditionalDate(fecha)}</p>
       </div>
       <Status state={status} />
     </div>
@@ -39,15 +44,15 @@ const Status = ({ state }) => {
   let statusText = "";
 
   if (state == "expired") {
-    status = "bg-gray-200 text-gray-780";
+    status = "bg-gray-200 text-gray-780 dark:bg-gray-800 dark:text-gray-300";
     statusText = "Expirado";
   }
   if (state == "completed") {
-    status = "bg-green-200 text-green-800";
+    status = "bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-300";
     statusText = "Completado";
   }
   if (state == "pending") {
-    status = "bg-yellow-200 text-yellow-700";
+    status = "bg-yellow-200 text-yellow-700 dark:bg-yellow-800 dark:text-yellow-300";
     statusText = "Pendiente";
   }
 
@@ -55,11 +60,11 @@ const Status = ({ state }) => {
     <div
       className={clsx(
         "w-full",
+        "font-bold",
         "p-[2px]",
         "rounded-full",
         "text-center",
         status,
-        "text-sm"
       )}
     >
       {statusText}

@@ -17,6 +17,7 @@ import FormDate from "../componentes/Form/FormDate";
 import FormSelect from "../componentes/Form/FormSelect";
 import Skeleton from "../hoc/Skeleton";
 import SpinnerButton from "../componentes/spinner/SpinnerButton";
+import { formatDate } from "../helper/formatDate";
 
 const MyTask = () => {
   const [
@@ -35,7 +36,7 @@ const MyTask = () => {
         <div className="flex flex-col gap-4">
           <Button setModal={showCreateModal} />
           {tasks.map((task) => (
-            <Task key={task.id} task={task} />
+            <Task key={task._id} task={task} />
           ))}
         </div>
 
@@ -85,6 +86,7 @@ const Form = ({ setModal }) => {
   const { handleSubmit, control, formState } = useForm({
     defaultValues: {
       ...mainTask,
+      fecha: formatDate(mainTask.fecha ? mainTask.fecha:''),
     },
   });
 
@@ -125,7 +127,7 @@ const Form = ({ setModal }) => {
       <div className="p-4 flex-col flex gap-8">
         <div className="flex flex-col gap-1">
           <h2 className="font-bold text-2xl ">Editar Tarea</h2>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-300">
             Llena todos los campos y edita esta tarea para organizarte
           </p>
         </div>
@@ -264,7 +266,7 @@ const CreateForm = ({ setModal }) => {
       <div className="p-4 flex-col flex gap-8">
         <div className="flex flex-col gap-1">
           <h2 className="font-bold text-2xl ">Creando Tarea</h2>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-300">
             Llena todos los campos y crea una nueva tarea para organizarte
           </p>
         </div>
