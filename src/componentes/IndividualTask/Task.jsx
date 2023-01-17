@@ -20,7 +20,7 @@ const Task = ({task}) => {
         "gap-6",
         "rounded-md",
         "cursor-pointer",
-        "hover:scale-[1.02]",
+        "hover:scale-[1.01]",
         "transition-all",
       )}
     >

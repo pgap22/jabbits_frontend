@@ -51,12 +51,12 @@ const App = () => {
                 <Route path="/projects" element={<ProtectedRoute />}>
                   <Route index element={<Projects />} />
                   <Route path=":id" element={<ProjectBoard />} />
-                  {/* <Route path=":id/teamates" element={<h1>Hola Colaboradores</h1>}></Route> */}
+                  <Route path=":id/teamates" element={<h1>Hola Colaboradores</h1>}></Route>
                 </Route>
 
-                {/* <Route path="/mytasks" element={<ProtectedRoute />}>
+                <Route path="/mytasks" element={<ProtectedRoute />}>
                   <Route index element={<MyTask />} />
-                </Route> */}
+                </Route>
               </Routes>
             </AnimatePresence>
           </TaskProvider>
