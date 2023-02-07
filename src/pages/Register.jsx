@@ -9,6 +9,7 @@ import NormalInput from "../componentes/Inputs/NormalInput";
 import FormsButtons from "../componentes/buttons/FormButtons";
 import ThemeButton from "../componentes/buttons/ThemeButton";
 import SpinnerButton from "../componentes/spinner/SpinnerButton";
+import {AiOutlineMail} from "react-icons/ai"
 const Register = () => {
   const passwordRef = useRef();
   const nameRef = useRef();
@@ -90,8 +91,11 @@ const Register = () => {
             </p>
           </div>
 
-          {alerta && (
+          {alerta && (<div className="flex flex-col items-center">
             <p className="text-yellow-500 text-lg font-bold">{alerta}</p>
+            <p className="text-yellow-500 text-lg font-bold">Se ha enviado un link de activacion de cuenta a tu correo</p>
+            <AiOutlineMail size={40} />
+          </div>
           )}
           {!enviado && (
             <>
