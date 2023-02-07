@@ -18,6 +18,7 @@ import FormSelect from "../componentes/Form/FormSelect";
 import Skeleton from "../hoc/Skeleton";
 import SpinnerButton from "../componentes/spinner/SpinnerButton";
 import { formatDate } from "../helper/formatDate";
+import { useState } from "react";
 
 const MyTask = () => {
   const [
@@ -82,11 +83,13 @@ const Button = ({ setModal }) => {
 
 const Form = ({ setModal }) => {
   const { mainTask, edit, deleteTask, setMainTask } = useTasks();
-
+  const [deleteButtonLoading, setLoadingDelete] = useState(true);
+  console.log(mainTask);
   const { handleSubmit, control, formState } = useForm({
     defaultValues: {
       ...mainTask,
-      fecha: formatDate(mainTask.fecha ? mainTask.fecha:''),
+      status: (new Date(mainTask.fecha)<new Date()) ? 'Expirado' : mainTask.status,
+      fecha: formatDate(mainTask.fecha ? mainTask.fecha : ""),
     },
   });
 
@@ -102,8 +105,10 @@ const Form = ({ setModal }) => {
     setModal();
   };
   const deleteMainTask = async () => {
+    setLoadingDelete(false);
     await deleteTask(mainTask);
     setMainTask({});
+    setLoadingDelete(true);
     setModal();
   };
 
@@ -211,12 +216,12 @@ const Form = ({ setModal }) => {
             </button>
 
             <button
-              onClick={handleSubmit(deleteMainTask)}
-              type="submit"
+              onClick={deleteMainTask}
+              type="button"
               className="w-full rounded-full bg-red-500 text-white font-bold p-2 py-3 flex flex-col items-center justify-center"
             >
               <Skeleton
-                value={!formState.isSubmitting}
+                value={deleteButtonLoading}
                 skeleton={<SpinnerButton />}
               >
                 <BiTrash size={32} />

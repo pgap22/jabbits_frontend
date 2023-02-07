@@ -7,9 +7,9 @@ const useModalTask = () => {
   
   const md = useMediaQuery('(min-width:768px)');
 
-  const initial = md ? {opacity: 0,  translateY: '-50%', translateX: '-50%'}  :    {translateY: '200%'};
-  const animate = md ? {opacity: 1, translateY: '-50%', translateX: '-50%'}  :    {translateY: '0'};
-  const exit  =   md ? {opacity: 0,  translateY: '-50%', translateX: '-50%'}  :   {translateY: '200%'};
+  const initial = md ? {opacity: 0,  WebkitTransform: 'translate(-50%,-50%)'}  :    {WebkitTransform: 'translateY(200%)'};
+  const animate = md ? {opacity: 1,  WebkitTransform: 'translate(-50%,-50%)'}  :    {WebkitTransform: '0'};
+  const exit  =   md ? {opacity: 0,  WebkitTransform: 'translate(-50%,-50%)'}  :    {WebkitTransform: 'translateY(200%)'};
   
   const closeModal = () => {
     setModal(false);
@@ -27,6 +27,7 @@ const useModalTask = () => {
           initial={initial}
           animate={animate}
           exit={exit}
+          style={{WebkitFontSmoothing: 'subpixel-antialiased'}}
           transition={{ duration: DURATION }}
           className={clsx(
             "rounded-t-lg",

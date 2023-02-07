@@ -34,7 +34,7 @@ const Task = ({task}) => {
 
         <p className="font-bold">{traditionalDate(fecha)}</p>
       </div>
-      <Status state={status} />
+      <Status state={(new Date(fecha) < new Date() ? 'expired' : status)} />
     </div>
   );
 };
