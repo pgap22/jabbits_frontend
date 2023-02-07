@@ -91,10 +91,10 @@ const Register = () => {
             </p>
           </div>
 
-          {alerta && (<div className="flex flex-col items-center">
+          {alerta && (<div className="flex flex-col items-center text-center">
             <p className="text-yellow-500 text-lg font-bold">{alerta}</p>
             <p className="text-yellow-500 text-lg font-bold">Se ha enviado un link de activacion de cuenta a tu correo</p>
-            <AiOutlineMail size={40} />
+            <AiOutlineMail size={120} />
           </div>
           )}
           {!enviado && (
