@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import clientAxios from "../config/axiosClient";
+import useAuth from "../hooks/useAuth";
 import useModalTask from "../hooks/useModalTask";
 
 const TaskContext = createContext();
@@ -7,7 +8,7 @@ const TaskContext = createContext();
 const TaskProvider = ({ children }) => {
   const [tasks, setTareas] = useState([]);
   const [mainTask, setMainTask] = useState({});
-
+  const {auth} = useAuth();
   const [setmodal, TaskModal, openTaskModal, closeTaskModal, showTaskModal] =
     useModalTask();
 
@@ -97,8 +98,8 @@ const TaskProvider = ({ children }) => {
   }
 
   useEffect(()=>{
-    getTareas();
-  },[])
+      getTareas();
+  },[auth])
 
   return (
     <TaskContext.Provider
@@ -111,7 +112,7 @@ const TaskProvider = ({ children }) => {
         openTaskModal,
         closeTaskModal,
         showTaskModal,
-
+        getTareas,
         mainTask,
         setMainTask,
       }}

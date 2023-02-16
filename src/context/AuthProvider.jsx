@@ -2,13 +2,11 @@ import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import clientAxios from "../config/axiosClient";
-
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
-
   const navigate = useNavigate();
   
   const Logout = ()=>{

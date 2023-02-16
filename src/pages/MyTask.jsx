@@ -84,11 +84,19 @@ const Button = ({ setModal }) => {
 const Form = ({ setModal }) => {
   const { mainTask, edit, deleteTask, setMainTask } = useTasks();
   const [deleteButtonLoading, setLoadingDelete] = useState(true);
-  console.log(mainTask);
+
+  let limitDate = Date.now();
+
+  const now = new Date(new Date().setHours(-1)).toISOString().split("T")[0];
+  if (mainTask.fecha) {
+    limitDate = new Date(mainTask.fecha).toISOString().split("T")[0];
+  }
+
   const { handleSubmit, control, formState } = useForm({
     defaultValues: {
       ...mainTask,
-      status: (new Date(mainTask.fecha)<new Date()) ? 'Expirado' : mainTask.status,
+      status:
+        new Date(limitDate) < new Date(now) ? "Expirado" : mainTask.status,
       fecha: formatDate(mainTask.fecha ? mainTask.fecha : ""),
     },
   });

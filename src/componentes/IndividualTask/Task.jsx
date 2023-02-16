@@ -5,6 +5,9 @@ import useTasks from "../../hooks/useTasks";
 
 const Task = ({task}) => {
   const { nombre: title, descripcion: description, status,fecha } = task;
+  const now = new Date(new Date().setHours(-1)).toISOString().split("T")[0];
+  const limitDate = new Date(fecha).toISOString().split("T")[0]
+  
   const {showTaskModal,setMainTask } = useTasks();
   return (
     <div
@@ -34,7 +37,7 @@ const Task = ({task}) => {
 
         <p className="font-bold">{traditionalDate(fecha)}</p>
       </div>
-      <Status state={(new Date(fecha) < new Date() ? 'expired' : status)} />
+      <Status state={ (new Date(limitDate) < new Date(now)) ? 'expired' : status} />
     </div>
   );
 };
