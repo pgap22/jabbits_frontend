@@ -42,9 +42,7 @@ const AcceptProject = () => {
   };
 
   useEffect(() => {
-    if (auth._id) {
       acceptingProject();
-    }
   }, [auth]);
 
   return (
